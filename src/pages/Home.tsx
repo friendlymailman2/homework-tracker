@@ -4,10 +4,14 @@ import { AddTask } from "../components/AddTask";
 import { DisplayTasks } from "../components/DisplaysTasks";
 import { DateContext } from "../Contexts/DateContext";
 import { useUserData } from "../hooks/useUserData";
+import { useDate } from "../hooks/useDate";
 
 export const Home = () => {
+  const { formatDateToMMDDYYYY } = useDate();
   const theme = useTheme();
-  const [selectedDate, setSelectedDate] = useState("");
+  const today = new Date();
+  const todayFromat = formatDateToMMDDYYYY(today);
+  const [selectedDate, setSelectedDate] = useState(todayFromat);
   const { user } = useUserData();
 
   useEffect(() => {
